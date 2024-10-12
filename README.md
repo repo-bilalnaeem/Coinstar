@@ -15,7 +15,7 @@ For a preview of the app design, please refer to the [Figma Design](https://www.
 
 | Home Screen | Transaction List | Settings
 |-------------|------------------|---------|
-| ![Home Screen](screenshots/Home-Light.png) | ![Transaction List](screenshots/Transaction-List.png) || ![Settings](screenshots/Settings.png) |
+| ![Home Screen](screenshots/Home-Light.png) | ![Transaction List](screenshots/Transaction-List.png) | ![Settings](screenshots/Settings.png) |
 
 | Add Expense | Analytics | Notifications |
 |-------------|-----------|---------------|
