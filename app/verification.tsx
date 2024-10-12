@@ -35,12 +35,12 @@ const Verification = () => {
 
   return (
     <KeyboardAvoidingView
-      style={{ flex: 1 }}
+      style={{ flex: 1, backgroundColor: "#fff" }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={20}
     >
       <StatusBar style="dark" />
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1,  }}>
         <View
           style={{
             flexDirection: "row",
@@ -123,7 +123,7 @@ const Verification = () => {
               onPress={() => {
                 if (isCodeComplete) {
                   // Handle verification code submission
-                  router.replace("/identification");
+                  router.replace("(identification)");
                 }
               }}
               style={[

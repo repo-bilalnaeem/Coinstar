@@ -62,8 +62,8 @@ Make sure you have the following installed:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/coinstar-app.git
-    cd coinstar-app
+    git clone https://github.com/repo-bilalnaeem/Coinstar.git
+    cd Coinstar
     ```
 
 2. Install dependencies:

@@ -24,12 +24,10 @@ const PhoneNumberInput = ({
 
   const handleCountryChange = (country) => {
     setSelectedCountry(country);
-    // Pass both country code and country name to the parent component
     onCountryChange({ countryCode: country.cca2, countryName: country.name });
   };
 
   const handlePhoneNumberChange = (text) => {
-    // Strip out the country code if it's present
     const formattedText = text.startsWith("+" + selectedCountry.callingCode)
       ? text.substring(selectedCountry.callingCode.length + 1)
       : text;
@@ -38,7 +36,6 @@ const PhoneNumberInput = ({
 
   useEffect(() => {
     getPhoneNumber(value);
-    // console.log(value);
   }, [value]);
 
   return (
@@ -73,7 +70,7 @@ const PhoneNumberInput = ({
           </Text>
           <TextInput
             textContentType="telephoneNumber"
-            placeholder="000-000-0000"
+            placeholder="123 456 7890"
             placeholderTextColor="gray"
             keyboardType="phone-pad"
             maxLength={15}
@@ -107,16 +104,13 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     color: "#fff",
     borderBottomColor: "#000",
-    // marginBottom: 20,
   },
   lightInputFocus: {
-    // your custom styles for the focused input
     borderColor: "#7593BD",
     borderWidth: 2,
     fontSize: 16,
   },
   darkInputFocus: {
-    // your custom styles for the focused input
     borderColor: "#E2E2E2",
     borderWidth: 2,
     fontSize: 16,
@@ -125,8 +119,6 @@ const styles = StyleSheet.create({
   inputColor: {
     color: "gray",
     width: "auto",
-    // flexGrow: 1,
-    // height: 60,
     fontSize: 18,
   },
 

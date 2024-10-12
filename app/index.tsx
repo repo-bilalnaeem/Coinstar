@@ -41,7 +41,7 @@ const Onboarding = () => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: "#fff" }}>
       <StatusBar style="dark" />
       <View style={{ flex: 5 }}>
         <FlatList
