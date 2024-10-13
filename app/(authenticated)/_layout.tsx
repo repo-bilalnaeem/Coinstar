@@ -30,6 +30,13 @@ const Layout = () => {
           headerShown: false,
         }}
       />
+
+      <Stack.Screen
+        name="card"
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack>
   );
 };

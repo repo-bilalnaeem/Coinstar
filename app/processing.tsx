@@ -149,7 +149,7 @@ const Processing = () => {
 
 const styles = StyleSheet.create({
   next: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "500",
     lineHeight: 20,
     fontStyle: "normal",
