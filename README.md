@@ -8,20 +8,20 @@ Welcome to **Coinstar**, a finance mobile app designed to help users manage thei
 
 ## 🚀 Demo & Design
 
-For a preview of the app design, please refer to the [Figma Design](https://www.figma.com/design/KEDcxW9t9UIAEYKkXZbKKL/Coinstar---Finance-Mobile-App-UI-Kit-(Community)?node-id=1020-89887&t=INEmeiBw912hoK0m-1). This design serves as the UI/UX reference for the app's development.
-![Cover Page](screenshots/Thumbnail.png) 
+For a preview of the app design, please refer to the [Figma Design](<https://www.figma.com/design/KEDcxW9t9UIAEYKkXZbKKL/Coinstar---Finance-Mobile-App-UI-Kit-(Community)?node-id=1020-89887&t=INEmeiBw912hoK0m-1>). This design serves as the UI/UX reference for the app's development.
+![Cover Page](screenshots/Thumbnail.png)
 
 ### 📱 App Screenshots
 
-| Home Screen | Transaction List | Settings
-|-------------|------------------|---------|
+| Home Screen                                | Transaction List                                      | Settings                              |
+| ------------------------------------------ | ----------------------------------------------------- | ------------------------------------- |
 | ![Home Screen](screenshots/Home-Light.png) | ![Transaction List](screenshots/Transaction-List.png) | ![Settings](screenshots/Settings.png) |
 
-| Add Expense | Analytics | Notifications |
-|-------------|-----------|---------------|
+| Add Expense                             | Analytics                               | Notifications                                   |
+| --------------------------------------- | --------------------------------------- | ----------------------------------------------- |
 | ![Add Expense](screenshots/Expense.png) | ![Analytics](screenshots/Analytics.png) | ![Notifications](screenshots/Notifications.png) |
 
-*Screenshots are placeholders. Replace the paths with actual images from your app.*
+_Screenshots are placeholders. Replace the paths with actual images from your app._
 
 ## 📋 Table of Contents
 
@@ -54,6 +54,7 @@ For a preview of the app design, please refer to the [Figma Design](https://www.
 ### Prerequisites
 
 Make sure you have the following installed:
+
 - [Node.js](https://nodejs.org/)
 - [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)
 
@@ -61,48 +62,50 @@ Make sure you have the following installed:
 
 1. Clone the repository:
 
-    ```bash
-    git clone https://github.com/repo-bilalnaeem/Coinstar.git
-    cd Coinstar
-    ```
+   ```bash
+   git clone https://github.com/repo-bilalnaeem/Coinstar.git
+   cd Coinstar
+   ```
 
 2. Install dependencies:
 
-    ```bash
-    yarn install
-    # or
-    npm install
-    ```
+   ```bash
+   yarn install
+   # or
+   npm install
+   ```
 
 3. Start the app:
 
-    ```bash
-    yarn start
-    # or
-    npm start
-    ```
+   ```bash
+   yarn start
+   # or
+   npm start
+   ```
 
 4. Run on Android or iOS:
 
-    ```bash
-    yarn android
-    yarn ios
-    ```
+   ```bash
+   yarn android
+   yarn ios
+   ```
 
 ## 🏗 Project Structure
 
 ```plaintext
-coinstar-app/
+Coinstar/
 │
-├── src/                       # Main source code
-│   ├── components/            # Reusable components
-│   ├── screens/               # App screens
-│   ├── navigation/            # Navigation setup
-│   ├── assets/                # Images, fonts, etc.
-│   ├── services/              # API services
-│   ├── store/                 # Redux store and slices
-│   └── utils/                 # Utility functions
+├── app/                       # Main source code
+│   ├── (authenticated)/       # Authenticated screens
+│   └── (identification)/      # Signup components
 │
-├── App.tsx                    # Root component
+├── assets/                    # Images, fonts, etc.
+├── components/                # Reusable components
+├── constants/                 # Resuable stylesheets
+├── ios/                       # IOS build folder
+├── screenshots/               # App screenshots
+├── store/                     # Redux store and slices
+├── utils/                     # Utility functions
 ├── package.json               # Project configuration
 └── README.md                  # Project README file
+```
