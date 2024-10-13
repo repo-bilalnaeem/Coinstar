@@ -1,38 +1,24 @@
-import React from "react";
+import { View, Text } from "react-native";
 import { Stack } from "expo-router";
+import React from "react";
 
 const Layout = () => {
   return (
     <Stack>
       <Stack.Screen
-        name="biometrics"
+        name="index"
         options={{
           headerShown: false,
         }}
       />
       <Stack.Screen
-        name="(tabs)"
+        name="id"
         options={{
           headerShown: false,
         }}
       />
-
       <Stack.Screen
-        name="(card)"
-        options={{
-          headerShown: false,
-        }}
-      />
-
-      <Stack.Screen
-        name="card"
-        options={{
-          headerShown: false,
-        }}
-      />
-
-      <Stack.Screen
-        name="(transfer)"
+        name="sent"
         options={{
           headerShown: false,
         }}

@@ -5,7 +5,6 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-
 export { ErrorBoundary } from "expo-router";
 
 SplashScreen.preventAutoHideAsync();

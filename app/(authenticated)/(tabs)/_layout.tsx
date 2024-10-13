@@ -5,6 +5,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 const Layout = () => {
   return (
     <Tabs
+      initialRouteName="index"
       screenOptions={{
         tabBarStyle: {
           borderTopWidth: 0,
@@ -17,7 +18,7 @@ const Layout = () => {
       }}
     >
       <Tabs.Screen
-        name="(wallet)"
+        name="index"
         options={{
           headerShown: false,
           title: "Wallet",

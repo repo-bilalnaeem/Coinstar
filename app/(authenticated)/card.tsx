@@ -63,7 +63,7 @@ const CompleteSetup = () => {
   });
 
   const handleCardComplete = async (type = "false") => {
-    router.navigate("/(authenticated)/(tabs)");
+    router.replace("/(authenticated)/(tabs)");
   };
 
   return (

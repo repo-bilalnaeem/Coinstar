@@ -36,7 +36,7 @@ const Onboarding = () => {
       slidesRef.current?.scrollToIndex({ index: currentIndex + 1 });
     } else {
       // navigation.navigate("verification")
-      router.push("/registration");
+      router.push("/(authenticated)/(tabs)");
     }
   };
 

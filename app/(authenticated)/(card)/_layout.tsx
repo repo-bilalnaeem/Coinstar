@@ -9,7 +9,7 @@ const Layout = () => {
         options={{
           headerShown: false,
         }}
-        />
+      />
 
       <Stack.Screen
         name="color"
@@ -40,7 +40,12 @@ const Layout = () => {
       />
 
       {/* <Stack.Screen name="completeSetup" options={{ headerShown: false }} /> */}
-      {/* <Stack.Screen name="yourCard" options={{ headerShown: false }} /> */}
+      <Stack.Screen
+        name="myCards"
+        options={{
+          headerShown: false,
+        }}
+      />
 
       {/* <Stack.Screen name="(settings)" options={{ headerShown: false }} /> */}
     </Stack>
