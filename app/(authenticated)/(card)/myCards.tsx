@@ -144,24 +144,24 @@ const myCards = () => {
       >
         <View style={{ paddingHorizontal: 20, paddingBottom: 10 }}>
           <Text style={styles.heading}>Settings</Text>
-          <View style={{ gap: 16, paddingVertical: 16, paddingBottom: 30 }}>
+          <View style={{ gap: 16, paddingVertical: 8, paddingBottom: 40 }}>
             <RenderOptions
               icon={require("@/assets/images/statement.png")}
               description={undefined}
               label="Get a card statement"
-              route="(settings)/statement"
+              route="(cardSettings)/statement"
             />
             <RenderOptions
               icon={require("@/assets/images/card-block.png")}
               description="You can always block your card"
               label="Temporarily block card"
-              route="(settings)/block"
+              route="(cardSettings)/block"
             />
             <RenderOptions
               icon={require("@/assets/images/apple.png")}
               description={undefined}
               label="Add to Apple Pay"
-              route="(settings)/applePay"
+              route="(cardSettings)/applePay"
             />
             <RenderOptions
               icon={require("@/assets/images/pincode.png")}
@@ -173,7 +173,7 @@ const myCards = () => {
               icon={require("@/assets/images/security.png")}
               description={undefined}
               label="Security settings"
-              route="(settings)/security"
+              route="(authenticated)/(tabs)"
             />
           </View>
         </View>

@@ -5,52 +5,39 @@ const Layout = () => {
   return (
     <Stack>
       <Stack.Screen
-        name="biometrics"
+        name="statement"
         options={{
           headerShown: false,
         }}
       />
       <Stack.Screen
-        name="(tabs)"
+        name="block"
         options={{
           headerShown: false,
         }}
       />
 
       <Stack.Screen
-        name="(card)"
+        name="applePay"
         options={{
           headerShown: false,
         }}
       />
 
       <Stack.Screen
-        name="card"
+        name="pinSettings"
         options={{
           headerShown: false,
         }}
       />
 
       <Stack.Screen
-        name="(transfer)"
+        name="securitySettings"
         options={{
           headerShown: false,
         }}
       />
 
-      <Stack.Screen
-        name="(transactions)"
-        options={{
-          headerShown: false,
-        }}
-      />
-
-      <Stack.Screen
-        name="(cardSettings)"
-        options={{
-          headerShown: false,
-        }}
-      />
     </Stack>
   );
 };
