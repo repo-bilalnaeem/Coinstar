@@ -83,7 +83,7 @@ const home = () => {
     <TouchableOpacity
       activeOpacity={0.4}
       style={styles.paymentContainer}
-      onPress={() => router.navigate(`/(authenticated)/payment/${item.id}`)}
+      onPress={() => router.navigate(`/(authenticated)/(transactions)/${item.id}`)}
     >
       <Image
         style={{
@@ -123,7 +123,7 @@ const home = () => {
       style={{
         flex: 1,
         backgroundColor: "#fff",
-        paddingHorizontal: 16,
+        paddingHorizontal: 10,
         paddingTop: top,
       }}
     >
@@ -174,9 +174,9 @@ const home = () => {
           >
             Send money
           </Text>
-          <View style={{ flexDirection: "row", gap: 16 }}>
+          <View style={{ flexDirection: "row", gap: 12 }}>
             <Pressable
-              onPress={() => router.replace("/(transfer)")}
+              onPress={() => router.push("/(transfer)")}
               style={{
                 backgroundColor: "#000",
                 padding: 16,
@@ -192,7 +192,7 @@ const home = () => {
               renderItem={renderItem}
               keyExtractor={(data) => data.id}
               horizontal
-              contentContainerStyle={{ gap: 16 }}
+              contentContainerStyle={{ gap: 10 }}
               showsHorizontalScrollIndicator={false}
             />
           </View>
@@ -262,7 +262,8 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     position: "relative",
     overflow: "hidden",
-    paddingHorizontal: 16,
+    paddingLeft: 16,
+    paddingHorizontal: 12,
     paddingVertical: 32,
     marginBottom: 24,
   },
