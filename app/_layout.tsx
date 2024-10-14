@@ -29,7 +29,9 @@ const InitialLayout = () => {
     return <Slot />;
   }
   return (
-    <Stack screenOptions={{ navigationBarColor: "#fff" }}>
+    <Stack
+      screenOptions={{ navigationBarColor: "#fff", gestureEnabled: false }}
+    >
       <Stack.Screen
         name="index"
         options={{

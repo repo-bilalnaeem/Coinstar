@@ -3,7 +3,10 @@ import { Stack } from "expo-router";
 
 const Layout = () => {
   return (
-    <Stack>
+    <Stack
+    screenOptions={{
+      gestureEnabled: false
+    }}>
       <Stack.Screen
         name="biometrics"
         options={{
