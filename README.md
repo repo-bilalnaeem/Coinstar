@@ -8,7 +8,7 @@ Welcome to **Coinstar**, a finance mobile app designed to help users manage thei
 
 ## 🚀 Demo & Design
 
-For a preview of the app design, please refer to the [Figma Design](<https://www.figma.com/design/KEDcxW9t9UIAEYKkXZbKKL/Coinstar---Finance-Mobile-App-UI-Kit-(Community)?node-id=1020-89887&t=INEmeiBw912hoK0m-1>). This design serves as the UI/UX reference for the app's development.
+For a preview of the app design, please refer to the [Figma Design](<https://www.figma.com/design/KEDcxW9t9UIAEYKkXZbKKL/Coinstar---Finance-Mobile-App-UI-Kit?node-id=1327-43231&t=vZy0CSNeN1HLzDzW-1>). This design serves as the UI/UX reference for the app's development.
 
 ## Screenshots
 
