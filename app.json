@@ -31,14 +31,6 @@
     "plugins": [
       "expo-router",
       [
-        "expo-camera",
-        {
-          "cameraPermission": "Allow Coinstar to access your camera",
-          "microphonePermission": "Allow Coinstar to access your microphone",
-          "recordAudioAndroid": true
-        }
-      ],
-      [
         "expo-local-authentication",
         {
           "faceIDPermission": "Allow Coinstar to use Face ID."
@@ -50,8 +42,7 @@
           "photosPermission": "The app accesses your photos to let you share them with your friends.",
           "cameraPermission": "Allow Coinstar to access your camera"
         }
-      ],
-      "expo-secure-store"
+      ]
     ],
     "experiments": {
       "typedRoutes": true
