@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Animated,
   useWindowDimensions,
+  useColorScheme,
 } from "react-native";
 import React from "react";
 
@@ -11,6 +12,7 @@ import { PaginatorProps } from "@/utils/Pagination";
 
 const Paginator = ({ data, scrollX }: PaginatorProps) => {
   const { width } = useWindowDimensions();
+  const isDarkMode = useColorScheme() === "dark";
 
   return (
     <View style={{ flexDirection: "row" }}>
@@ -31,7 +33,11 @@ const Paginator = ({ data, scrollX }: PaginatorProps) => {
 
         return (
           <Animated.View
-            style={[styles.dot, { width: dotWidth, opacity }]}
+            style={[
+              styles.dot,
+              { width: dotWidth, opacity },
+              isDarkMode ? { backgroundColor: "#fff" } : undefined,
+            ]}
             key={i.toString()}
           />
         );

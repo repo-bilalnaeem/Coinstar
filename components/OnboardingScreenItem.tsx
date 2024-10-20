@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Image,
   useWindowDimensions,
+  useColorScheme,
 } from "react-native";
 import React from "react";
 
@@ -11,6 +12,7 @@ import { OnBoardingScreenProps } from "@/utils/Pagination";
 
 const OnboardingScreenItem = ({ item }: OnBoardingScreenProps) => {
   const { width } = useWindowDimensions();
+  const isDarkMode = useColorScheme() === "dark";
 
   return (
     <View style={[styles.container, { width }]}>
@@ -19,10 +21,19 @@ const OnboardingScreenItem = ({ item }: OnBoardingScreenProps) => {
           source={item.image}
           style={[styles.image, { width, resizeMode: "contain" }]}
         />
-        <View style={{ flex: 0.50, paddingHorizontal: 20 }}>
+        <View style={{ flex: 0.5, paddingHorizontal: 20 }}>
           {/* <Text>hello</Text> */}
-          <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.description}>{item.description}</Text>
+          <Text style={[styles.title, isDarkMode ? { color: "#fff" } : null]}>
+            {item.title}
+          </Text>
+          <Text
+            style={[
+              styles.description,
+              isDarkMode ? { color: "#bfbfbf" } : null,
+            ]}
+          >
+            {item.description}
+          </Text>
         </View>
       </View>
     </View>

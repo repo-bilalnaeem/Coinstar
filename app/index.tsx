@@ -1,11 +1,17 @@
 import React, { useState, useRef } from "react";
-import { View, FlatList, Animated, ViewToken } from "react-native";
+import {
+  View,
+  FlatList,
+  Animated,
+  ViewToken,
+  useColorScheme,
+} from "react-native";
 
 import slides from "../utils/slides";
 import OnboardingScreenItem from "@/components/OnboardingScreenItem";
 import NextButton from "@/components/NextButton";
 import Paginator from "@/components/Paginator";
-import { Link, useNavigation, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 
 interface Slide {
@@ -20,6 +26,7 @@ const Onboarding = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef<FlatList<Slide>>(null);
   const router = useRouter();
+  const isDarkMode = useColorScheme() === "dark";
 
   const viewableItemsChanged = useRef(
     ({ viewableItems }: { viewableItems: ViewToken[] }) => {
@@ -41,8 +48,13 @@ const Onboarding = () => {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#fff" }}>
-      <StatusBar style="dark" />
+    <View
+      style={[
+        { flex: 1 },
+        isDarkMode ? { backgroundColor: "#000000" } : { backgroundColor: "#fff" },
+      ]}
+    >
+      <StatusBar style={isDarkMode ? "light" : "dark"} />
       <View style={{ flex: 5 }}>
         <FlatList
           data={slides}
