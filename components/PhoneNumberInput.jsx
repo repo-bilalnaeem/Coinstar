@@ -39,7 +39,12 @@ const PhoneNumberInput = ({
   }, [value]);
 
   return (
-    <View style={[styles.lightTextInput]}>
+    <View
+      style={[
+        styles.lightTextInput,
+        isDarkMode ? { borderBottomColor: "#fff" } : undefined,
+      ]}
+    >
       <View
         style={{
           display: "flex",
@@ -60,23 +65,31 @@ const PhoneNumberInput = ({
           <Ionicons
             name="chevron-down"
             size={20}
-            color={isDarkMode ? "gray" : "black"}
+            color={isDarkMode ? "#fff" : "black"}
             style={{ marginRight: 10 }}
           />
         </View>
         <View style={{ flexDirection: "row", width: "70%" }}>
-          <Text style={[{ marginRight: 20, fontSize: 20, fontWeight: "500" }]}>
+          <Text
+            style={[
+              { marginRight: 20, fontSize: 20, fontWeight: "500" },
+              isDarkMode ? { color: "#fff" } : undefined,
+            ]}
+          >
             +{selectedCountry.callingCode}
           </Text>
           <TextInput
             textContentType="telephoneNumber"
-            placeholder="123 456 7890"
+            placeholder="000-000-0000"
             placeholderTextColor="gray"
             keyboardType="phone-pad"
             maxLength={15}
             onChangeText={handlePhoneNumberChange}
             value={value}
-            style={styles.inputColor}
+            style={[
+              styles.inputColor,
+              isDarkMode ? { color: "#fff" } : undefined,
+            ]}
           />
         </View>
       </View>
@@ -119,7 +132,7 @@ const styles = StyleSheet.create({
   inputColor: {
     color: "gray",
     width: "auto",
-    fontSize: 18,
+    fontSize: 20,
   },
 
   countryCode: {

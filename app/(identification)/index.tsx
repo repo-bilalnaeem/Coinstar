@@ -9,6 +9,7 @@ import {
   TouchableWithoutFeedback,
   StyleSheet,
   SafeAreaView,
+  useColorScheme,
 } from "react-native";
 import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
@@ -36,9 +37,15 @@ const LegalName = () => {
       console.error("Failed to save the data to the storage", error);
     }
   };
+
+  const isDarkMode = useColorScheme() === "dark";
+
   return (
     <KeyboardAvoidingView
-      style={{ flex: 1 }}
+      style={[
+        { flex: 1 },
+        isDarkMode ? { backgroundColor: "#000" } : { backgroundColor: "#fff" },
+      ]}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={20}
       key="phoneInput"
@@ -54,40 +61,57 @@ const LegalName = () => {
             }}
           >
             <TouchableOpacity onPress={() => router.back()}>
-              <Ionicons name="arrow-back" size={25} color="#000" />
+              <Ionicons
+                name="arrow-back"
+                size={25}
+                color={isDarkMode ? "#fff" : "#000"}
+              />
             </TouchableOpacity>
           </View>
+          <StatusBar style={isDarkMode ? "light" : "dark"} />
 
-          <StatusBar style="dark" />
           <View style={{ paddingHorizontal: 20, flex: 1 }}>
             <Text
-              style={{
-                fontSize: 28,
-                lineHeight: 32,
-                fontWeight: "600",
-                textAlign: "center",
-                marginBottom: 18,
-                marginTop: 18,
-              }}
+              style={[
+                {
+                  fontSize: 28,
+                  lineHeight: 32,
+                  fontWeight: "600",
+                  textAlign: "center",
+                  marginBottom: 18,
+                  marginTop: 18,
+                },
+                isDarkMode ? { color: "#fff" } : undefined,
+              ]}
             >
               What is your name?
             </Text>
             <View style={{ flex: 1 }}>
               <Text
-                style={{
-                  textAlign: "center",
-                  color: "#575757",
-                  fontSize: 16,
-                  fontWeight: "500",
-                  lineHeight: 24,
-                  marginBottom: 32,
-                }}
+                style={[
+                  {
+                    textAlign: "center",
+                    color: "#575757",
+                    fontSize: 16,
+                    fontWeight: "400",
+                    lineHeight: 24,
+                    marginBottom: 32,
+                  },
+                  isDarkMode ? { color: "#bfbfbf" } : undefined,
+                ]}
               >
                 Please enter your legal name
               </Text>
               <View style={{ flex: 1 }}>
                 <View>
-                  <Text style={styles.label}>First Name</Text>
+                  <Text
+                    style={[
+                      styles.label,
+                      isDarkMode ? { color: "#fff" } : undefined,
+                    ]}
+                  >
+                    First Name
+                  </Text>
                   <TextInput
                     textContentType="none"
                     placeholder="Bilal"
@@ -96,14 +120,26 @@ const LegalName = () => {
                     maxLength={15}
                     onChangeText={handleFirstNameChange}
                     value={firstName}
-                    style={styles.inputColor}
+                    style={[
+                      styles.inputColor,
+                      isDarkMode
+                        ? { color: "#fff", borderBottomColor: "#fff" }
+                        : undefined,
+                    ]}
                     autoCorrect={false}
                     importantForAutofill="no"
                     autoCapitalize="words"
                   />
                 </View>
                 <View>
-                  <Text style={styles.label}>Last Name</Text>
+                  <Text
+                    style={[
+                      styles.label,
+                      isDarkMode ? { color: "#fff" } : undefined,
+                    ]}
+                  >
+                    Last Name
+                  </Text>
                   <TextInput
                     textContentType="none"
                     placeholder="Naeem"
@@ -112,7 +148,12 @@ const LegalName = () => {
                     maxLength={15}
                     onChangeText={handleLastNameChange}
                     value={lastName}
-                    style={styles.inputColor}
+                    style={[
+                      styles.inputColor,
+                      isDarkMode
+                        ? { color: "#fff", borderBottomColor: "#fff" }
+                        : undefined,
+                    ]}
                     autoCorrect={false}
                     importantForAutofill="no"
                     autoCapitalize="words"
@@ -123,16 +164,28 @@ const LegalName = () => {
 
             <TouchableOpacity
               onPress={saveUserName}
-              style={[styles.button, isFilled ? styles.buttonActive : null]}
+              style={[
+                styles.button,
+                isFilled ? styles.buttonActive : null,
+                isDarkMode && isFilled
+                  ? { backgroundColor: "#fff" }
+                  : undefined,
+              ]}
               disabled={!isFilled}
             >
-              <Text style={[styles.next, isFilled && { color: "#fff" }]}>
+              <Text
+                style={[
+                  styles.next,
+                  isFilled && { color: "#fff" },
+                  isFilled && isDarkMode ? { color: "#000" } : undefined,
+                ]}
+              >
                 Next
               </Text>
               <Ionicons
                 name="arrow-forward-outline"
                 size={24}
-                color={isFilled ? "#fff" : "#575757"}
+                color={isFilled  ? (isDarkMode ? "#000" : "#fff") : "#575757"}
               />
             </TouchableOpacity>
           </View>

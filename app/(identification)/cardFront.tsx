@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
   SafeAreaView,
+  useColorScheme,
 } from "react-native";
 import ContentLoader, { Rect } from "react-content-loader/native";
 import * as ImagePicker from "expo-image-picker";
@@ -75,9 +76,17 @@ const CardFront = () => {
     }
   };
 
+  const isDarkMode = useColorScheme() === "dark";
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-      <StatusBar style="dark" />
+    <SafeAreaView
+      style={[
+        { flex: 1 },
+        isDarkMode ? { backgroundColor: "#000" } : { backgroundColor: "#fff" },
+      ]}
+    >
+      <StatusBar style={isDarkMode ? "light" : "dark"} />
+
       <View
         style={{
           flexDirection: "row",
@@ -87,7 +96,11 @@ const CardFront = () => {
         }}
       >
         <TouchableOpacity onPress={() => router.back()}>
-          <Ionicons name="arrow-back" size={25} color="#000" />
+          <Ionicons
+            name="arrow-back"
+            size={25}
+            color={isDarkMode ? "#fff" : "#000"}
+          />
         </TouchableOpacity>
       </View>
       <View style={{ flex: 1, paddingHorizontal: 20 }}>
@@ -122,21 +135,49 @@ const CardFront = () => {
           </View>
         </View>
         <View style={styles.instructions}>
-          <Text style={styles.instructionsTitle}>
+          <Text
+            style={[
+              styles.instructionsTitle,
+              isDarkMode ? { color: "#fff" } : undefined,
+            ]}
+          >
             Scan the front page{"\n"}of ID card
           </Text>
-          <Text style={styles.instructionsSubtitle}>
+          <Text
+            style={[
+              styles.instructionsSubtitle,
+              isDarkMode ? { color: "#bfbfbf" } : undefined,
+            ]}
+          >
             Please prepare your document
           </Text>
         </View>
         <TouchableOpacity
-          style={[styles.button, styles.buttonActive]}
+          style={[
+            styles.button,
+            styles.buttonActive,
+            isDarkMode ? { backgroundColor: "#fff" } : undefined,
+          ]}
           onPress={handleTakePhoto}
         >
-          <Text style={styles.buttonText}>Take a Photo</Text>
+          <Text
+            style={[
+              styles.buttonText,
+              isDarkMode ? { color: "#000" } : undefined,
+            ]}
+          >
+            Take a Photo
+          </Text>
         </TouchableOpacity>
         <Pressable onPress={pickImage}>
-          <Text style={styles.openGalleryText}>Open gallery</Text>
+          <Text
+            style={[
+              styles.openGalleryText,
+              isDarkMode ? { color: "#bfbfbf" } : undefined,
+            ]}
+          >
+            Open gallery
+          </Text>
         </Pressable>
       </View>
     </SafeAreaView>

@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ActivityIndicator,
   SafeAreaView,
+  useColorScheme,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
@@ -33,8 +34,15 @@ const Processing = () => {
     };
   }, [documentUploaded]);
 
+  const isDarkMode = useColorScheme() === "dark";
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView
+      style={[
+        { flex: 1 },
+        isDarkMode ? { backgroundColor: "#000" } : { backgroundColor: "#fff" },
+      ]}
+    >
       <Image
         source={require("@/assets/images/Processing.png")}
         style={{
@@ -46,25 +54,31 @@ const Processing = () => {
       />
       <View style={{ flex: 1 }}>
         <Text
-          style={{
-            fontSize: 32,
-            textAlign: "center",
-            fontWeight: "500",
-            lineHeight: 36,
-            marginBottom: 16,
-          }}
+          style={[
+            {
+              fontSize: 32,
+              textAlign: "center",
+              fontWeight: "500",
+              lineHeight: 36,
+              marginBottom: 16,
+            },
+            isDarkMode ? { color: "#fff" } : undefined,
+          ]}
         >
           Wait a minute
         </Text>
         <Text
-          style={{
-            textAlign: "center",
-            color: "#575757",
-            fontWeight: "500",
-            fontSize: 16,
-            lineHeight: 20,
-            marginBottom: 32,
-          }}
+          style={[
+            {
+              textAlign: "center",
+              color: "#575757",
+              fontWeight: "500",
+              fontSize: 16,
+              lineHeight: 20,
+              marginBottom: 32,
+            },
+            isDarkMode ? { color: "#fff" } : undefined,
+          ]}
         >
           We analyze your profile verification
         </Text>
@@ -87,7 +101,14 @@ const Processing = () => {
                 <ActivityIndicator size="small" color="#0000ff" />
               </View>
             )}
-            <Text style={styles.processing}>Documents uploaded</Text>
+            <Text
+              style={[
+                styles.processing,
+                isDarkMode ? { color: "#fff" } : undefined,
+              ]}
+            >
+              Documents uploaded
+            </Text>
           </View>
 
           <View style={styles.statusItem}>
@@ -106,7 +127,14 @@ const Processing = () => {
                 <ActivityIndicator size="small" color="#0000ff" />
               </View>
             )}
-            <Text style={styles.processing}>Documents approved</Text>
+            <Text
+              style={[
+                styles.processing,
+                isDarkMode ? { color: "#fff" } : undefined,
+              ]}
+            >
+              Documents approved
+            </Text>
           </View>
 
           <View style={styles.statusItem}>
@@ -125,7 +153,14 @@ const Processing = () => {
                 <ActivityIndicator size="small" color="#0000ff" />
               </View>
             )}
-            <Text style={styles.processing}>Selfie approved</Text>
+            <Text
+              style={[
+                styles.processing,
+                isDarkMode ? { color: "#fff" } : undefined,
+              ]}
+            >
+              Selfie approved
+            </Text>
           </View>
         </View>
       </View>
@@ -133,13 +168,20 @@ const Processing = () => {
         style={[
           styles.button,
           documentApproved && selfieApproved
-            ? styles.buttonActive
+            ? isDarkMode
+              ? { backgroundColor: "#fff" }
+              : styles.buttonActive
             : styles.buttonInactive,
         ]}
         disabled={!(documentApproved && selfieApproved)}
         onPress={() => router.replace("/passcode")}
       >
-        <Text style={[styles.next, { color: "#fff" }]}>
+        <Text
+          style={[
+            styles.next,
+            isDarkMode ? { color: "#000" } : { color: "#fff" },
+          ]}
+        >
           Finish Verification
         </Text>
       </TouchableOpacity>

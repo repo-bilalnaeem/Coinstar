@@ -8,15 +8,15 @@ import {
   TouchableOpacity,
   StyleSheet,
   SafeAreaView,
+  useColorScheme,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import RNPickerSelect from "react-native-picker-select";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 const ContactInfo = () => {
-  const { bottom } = useSafeAreaInsets();
   const [email, setEmail] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
   const [address, setAddress] = useState("");
@@ -69,12 +69,19 @@ const ContactInfo = () => {
     }
   };
 
+  const isDarkMode = useColorScheme() === "dark";
+
   return (
     <KeyboardAvoidingView
-      style={styles.container}
+      style={[
+        { flex: 1 },
+        isDarkMode ? { backgroundColor: "#000" } : { backgroundColor: "#fff" },
+      ]}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={20}
     >
+      <StatusBar style={isDarkMode ? "light" : "dark"} />
+
       <SafeAreaView style={{ flex: 1 }}>
         <View
           style={{
@@ -85,7 +92,11 @@ const ContactInfo = () => {
           }}
         >
           <TouchableOpacity onPress={() => router.back()}>
-            <Ionicons name="arrow-back" size={25} color="#000" />
+            <Ionicons
+              name="arrow-back"
+              size={25}
+              color={isDarkMode ? "#fff" : "#000"}
+            />
           </TouchableOpacity>
         </View>
         <View style={styles.content}>
@@ -95,20 +106,30 @@ const ContactInfo = () => {
             contentInset={{ bottom: 10 }}
           >
             <Text
-              style={{
-                fontSize: 28,
-                lineHeight: 32,
-                fontWeight: "600",
-                textAlign: "center",
-                marginBottom: 18,
-                marginTop: 18,
-              }}
+              style={[
+                {
+                  fontSize: 28,
+                  lineHeight: 32,
+                  fontWeight: "600",
+                  textAlign: "center",
+                  marginBottom: 18,
+                  marginTop: 18,
+                },
+                isDarkMode ? { color: "#fff" } : undefined,
+              ]}
             >
               Enter your contact{"\n"}information
             </Text>
 
             <View>
-              <Text style={styles.label}>Email</Text>
+              <Text
+                style={[
+                  styles.label,
+                  isDarkMode ? { color: "#fff" } : undefined,
+                ]}
+              >
+                Email
+              </Text>
               <TextInput
                 textContentType="emailAddress"
                 placeholder="naeem.bilal.work@gmail.com"
@@ -117,35 +138,125 @@ const ContactInfo = () => {
                 maxLength={50}
                 onChangeText={handleEmailChange}
                 value={email}
-                style={styles.inputColor}
+                style={[
+                  styles.inputColor,
+                  isDarkMode
+                    ? { color: "#fff", borderBottomColor: "#fff" }
+                    : undefined,
+                ]}
               />
             </View>
             <View>
-              <Text style={styles.label}>Country</Text>
+              <Text
+                style={[
+                  styles.label,
+                  isDarkMode ? { color: "#fff" } : undefined,
+                ]}
+              >
+                Country
+              </Text>
               <RNPickerSelect
                 onValueChange={(value) => setSelectedCountry(value)}
                 items={countries}
-                style={pickerSelectStyles}
+                style={
+                  isDarkMode
+                    ? {
+                        inputIOS: {
+                          fontSize: 16,
+                          paddingVertical: 12,
+                          borderBottomWidth: 1,
+                          borderBottomColor: "#fff",
+                          color: "#fff",
+                          paddingRight: 30,
+                          height: 50,
+                          fontWeight: "600",
+                          marginBottom: 24,
+                        },
+                        inputAndroid: {
+                          fontSize: 16,
+                          paddingVertical: 8,
+                          borderBottomWidth: 1,
+                          borderBottomColor: "#fff",
+                          color: "#fff",
+                          paddingRight: 30,
+                          fontWeight: "600",
+                          marginBottom: 24,
+                        },
+                      }
+                    : pickerSelectStyles
+                }
                 placeholder={{ label: "Country", value: null, color: "gray" }}
                 Icon={() => {
-                  return <Ionicons name="arrow-down" size={24} color="gray" />;
+                  return (
+                    <Ionicons
+                      name="arrow-down"
+                      size={24}
+                      color={isDarkMode ? "#fff" : "gray"}
+                    />
+                  );
                 }}
               />
             </View>
             <View>
-              <Text style={styles.label}>City</Text>
+              <Text
+                style={[
+                  styles.label,
+                  isDarkMode ? { color: "#fff" } : undefined,
+                ]}
+              >
+                City
+              </Text>
               <RNPickerSelect
                 onValueChange={(value) => setSelectedCity(value)}
                 items={cities}
-                style={pickerSelectStyles}
+                style={
+                  isDarkMode
+                    ? {
+                        inputIOS: {
+                          fontSize: 16,
+                          paddingVertical: 12,
+                          borderBottomWidth: 1,
+                          borderBottomColor: "#fff",
+                          color: "#fff",
+                          paddingRight: 30,
+                          height: 50,
+                          fontWeight: "600",
+                          marginBottom: 24,
+                        },
+                        inputAndroid: {
+                          fontSize: 16,
+                          paddingVertical: 8,
+                          borderBottomWidth: 1,
+                          borderBottomColor: "#fff",
+                          color: "#fff",
+                          paddingRight: 30,
+                          fontWeight: "600",
+                          marginBottom: 24,
+                        },
+                      }
+                    : pickerSelectStyles
+                }
                 placeholder={{ label: "City", value: null, color: "gray" }}
                 Icon={() => {
-                  return <Ionicons name="arrow-down" size={24} color="gray" />;
+                  return (
+                    <Ionicons
+                      name="arrow-down"
+                      size={24}
+                      color={isDarkMode ? "#fff" : "gray"}
+                    />
+                  );
                 }}
               />
             </View>
             <View>
-              <Text style={styles.label}>Address</Text>
+              <Text
+                style={[
+                  styles.label,
+                  isDarkMode ? { color: "#fff" } : undefined,
+                ]}
+              >
+                Address
+              </Text>
               <TextInput
                 textContentType="fullStreetAddress"
                 placeholder="23, Saint Boulevard Street"
@@ -153,11 +264,23 @@ const ContactInfo = () => {
                 keyboardType="default"
                 onChangeText={handleAddressChange}
                 value={address}
-                style={styles.inputColor}
+                style={[
+                  styles.inputColor,
+                  isDarkMode
+                    ? { color: "#fff", borderBottomColor: "#fff" }
+                    : undefined,
+                ]}
               />
             </View>
             <View>
-              <Text style={styles.label}>Zip</Text>
+              <Text
+                style={[
+                  styles.label,
+                  isDarkMode ? { color: "#fff" } : undefined,
+                ]}
+              >
+                Zip
+              </Text>
               <TextInput
                 textContentType="postalCode"
                 placeholder="11000"
@@ -166,7 +289,12 @@ const ContactInfo = () => {
                 maxLength={5}
                 onChangeText={handleZipChange}
                 value={zip}
-                style={styles.inputColor}
+                style={[
+                  styles.inputColor,
+                  isDarkMode
+                    ? { color: "#fff", borderBottomColor: "#fff" }
+                    : undefined,
+                ]}
               />
             </View>
           </ScrollView>
@@ -174,11 +302,27 @@ const ContactInfo = () => {
 
         <TouchableOpacity
           onPress={setUserInformation}
-          style={[styles.button, isFilled && styles.buttonActive]}
+          style={[
+            styles.button,
+            isFilled ? styles.buttonActive : null,
+            isDarkMode && isFilled ? { backgroundColor: "#fff" } : undefined,
+          ]}
           disabled={!isFilled}
         >
-          <Text style={[styles.next, { color: "#fff" }]}>Next</Text>
-          <Ionicons name="arrow-forward-outline" size={24} color={"#fff"} />
+          <Text
+            style={[
+              styles.next,
+              isFilled && { color: "#fff" },
+              isFilled && isDarkMode ? { color: "#000" } : undefined,
+            ]}
+          >
+            Next
+          </Text>
+          <Ionicons
+            name="arrow-forward-outline"
+            size={24}
+            color={isFilled ? (isDarkMode ? "#000" : "#fff") : "#575757"}
+          />
         </TouchableOpacity>
       </SafeAreaView>
     </KeyboardAvoidingView>
@@ -245,7 +389,7 @@ const pickerSelectStyles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#404040",
     color: "black",
-    paddingRight: 30, // to ensure the text is never behind the icon
+    paddingRight: 30,
     height: 50,
     fontWeight: "600",
     marginBottom: 24,
@@ -256,7 +400,7 @@ const pickerSelectStyles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#404040",
     color: "black",
-    paddingRight: 30, // to ensure the text is never behind the icon
+    paddingRight: 30,
     fontWeight: "600",
     marginBottom: 24,
   },

@@ -6,6 +6,7 @@ import {
   Image,
   StyleSheet,
   SafeAreaView,
+  useColorScheme,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Ionicons } from "@expo/vector-icons";
@@ -30,8 +31,16 @@ const Selfie = () => {
       router.navigate("/processing");
     }
   };
+
+  const isDarkMode = useColorScheme() === "dark";
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView
+      style={[
+        { flex: 1 },
+        isDarkMode ? { backgroundColor: "#000" } : { backgroundColor: "#fff" },
+      ]}
+    >
       <View
         style={{
           flexDirection: "row",
@@ -41,7 +50,11 @@ const Selfie = () => {
         }}
       >
         <TouchableOpacity onPress={() => router.back()}>
-          <Ionicons name="arrow-back" size={25} color="#000" />
+          <Ionicons
+            name="arrow-back"
+            size={25}
+            color={isDarkMode ? "#fff" : "#000"}
+          />
         </TouchableOpacity>
       </View>
       <View style={{ flex: 1 }}>
@@ -56,24 +69,31 @@ const Selfie = () => {
         />
         <View style={{ flex: 1, paddingVertical: 32 }}>
           <Text
-            style={{
-              fontSize: 32,
-              textAlign: "center",
-              fontWeight: "500",
-              lineHeight: 36,
-              marginBottom: 24,
-            }}
+            style={[
+              {
+                fontSize: 28,
+                lineHeight: 32,
+                fontWeight: "600",
+                textAlign: "center",
+                marginBottom: 18,
+                marginTop: 18,
+              },
+              isDarkMode ? { color: "#fff" } : undefined,
+            ]}
           >
             Take a selfie
           </Text>
           <Text
-            style={{
-              textAlign: "center",
-              color: "#575757",
-              fontWeight: "400",
-              fontSize: 14,
-              lineHeight: 20,
-            }}
+            style={[
+              {
+                textAlign: "center",
+                color: "#575757",
+                fontWeight: "400",
+                fontSize: 14,
+                lineHeight: 20,
+              },
+              isDarkMode ? { color: "#fbfbfb" } : undefined,
+            ]}
           >
             We use your selfie to co mpare with your{"\n"}passport photo
           </Text>
@@ -81,9 +101,21 @@ const Selfie = () => {
 
         <TouchableOpacity
           onPress={handleTakePhoto}
-          style={[styles.button, styles.buttonActive, { marginHorizontal: 20 }]}
+          style={[
+            styles.button,
+            styles.buttonActive,
+            { marginHorizontal: 20 },
+            isDarkMode ? { backgroundColor: "#fff" } : undefined,
+          ]}
         >
-          <Text style={[styles.next, { color: "#fff" }]}>Continue</Text>
+          <Text
+            style={[
+              styles.next,
+              isDarkMode ? { color: "#000" } : { color: "#fff" },
+            ]}
+          >
+            Continue
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

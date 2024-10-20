@@ -9,6 +9,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   SafeAreaView,
+  useColorScheme,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import {
@@ -32,15 +33,19 @@ const Verification = () => {
 
   const isCodeComplete = code.length === CELL_COUNT;
   const router = useRouter();
+  const isDarkMode = useColorScheme() === "dark";
 
   return (
     <KeyboardAvoidingView
-      style={{ flex: 1, backgroundColor: "#fff" }}
+      style={[
+        { flex: 1 },
+        isDarkMode ? { backgroundColor: "#000" } : { backgroundColor: "#fff" },
+      ]}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={20}
     >
-      <StatusBar style="dark" />
-      <SafeAreaView style={{ flex: 1,  }}>
+      <StatusBar style={isDarkMode ? "light" : "dark"} />
+      <SafeAreaView style={{ flex: 1 }}>
         <View
           style={{
             flexDirection: "row",
@@ -50,33 +55,43 @@ const Verification = () => {
           }}
         >
           <TouchableOpacity onPress={() => router.back()}>
-            <Ionicons name="arrow-back" size={25} color="#000" />
+            <Ionicons
+              name="arrow-back"
+              size={25}
+              color={isDarkMode ? "#fff" : "#000"}
+            />
           </TouchableOpacity>
         </View>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={{ flex: 1, paddingHorizontal: 20 }}>
             <Text
-              style={{
-                fontSize: 28,
-                lineHeight: 32,
-                fontWeight: "600",
-                textAlign: "center",
-                marginBottom: 18,
-                marginTop: 18,
-              }}
+              style={[
+                {
+                  fontSize: 28,
+                  lineHeight: 32,
+                  fontWeight: "600",
+                  textAlign: "center",
+                  marginBottom: 18,
+                  marginTop: 18,
+                },
+                isDarkMode ? { color: "#fff" } : undefined,
+              ]}
             >
               Enter verification code
             </Text>
             <View style={{ flex: 1 }}>
               <Text
-                style={{
-                  textAlign: "center",
-                  color: "#575757",
-                  fontSize: 16,
-                  fontWeight: "400",
-                  lineHeight: 24,
-                  marginBottom: 32,
-                }}
+                style={[
+                  {
+                    textAlign: "center",
+                    color: "#575757",
+                    fontSize: 16,
+                    fontWeight: "400",
+                    lineHeight: 24,
+                    marginBottom: 32,
+                  },
+                  isDarkMode ? { color: "#bfbfbf" } : undefined,
+                ]}
               >
                 Please enter the code from the SMS
               </Text>
@@ -106,14 +121,18 @@ const Verification = () => {
             </View>
 
             <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: 20,
-              }}
+              style={[
+                {
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 20,
+                },
+              ]}
             >
-              <Text>Didn't receive an SMS? </Text>
+              <Text style={[isDarkMode ? { color: "#bfbfbf" } : undefined]}>
+                Didn't receive an SMS?{" "}
+              </Text>
               <TouchableOpacity>
                 <Text style={{ color: "#4D72F5" }}>Resend SMS</Text>
               </TouchableOpacity>
@@ -123,22 +142,33 @@ const Verification = () => {
               onPress={() => {
                 if (isCodeComplete) {
                   // Handle verification code submission
-                  router.replace("(identification)");
+                  router.replace("/(identification)");
                 }
               }}
               style={[
                 styles.button,
                 isCodeComplete ? styles.buttonActive : null,
+                isDarkMode && isCodeComplete
+                  ? { backgroundColor: "#fff" }
+                  : undefined,
               ]}
               disabled={!isCodeComplete}
             >
-              <Text style={[styles.next, isCodeComplete && { color: "#fff" }]}>
+              <Text
+                style={[
+                  styles.next,
+                  isCodeComplete && { color: "#fff" },
+                  isCodeComplete && isDarkMode ? { color: "#000" } : undefined,
+                ]}
+              >
                 Next
               </Text>
               <Ionicons
                 name="arrow-forward-outline"
                 size={24}
-                color={isCodeComplete ? "#fff" : "#575757"}
+                color={
+                  isCodeComplete ? (isDarkMode ? "#000" : "#fff") : "#575757"
+                }
               />
             </TouchableOpacity>
           </View>

@@ -14,6 +14,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   SafeAreaView,
+  useColorScheme,
 } from "react-native";
 import {
   BottomSheetModal,
@@ -41,16 +42,24 @@ const DateOfBirth = () => {
     }
   };
 
+  const isDarkMode = useColorScheme() === "dark";
+
   return (
     <BottomSheetModalProvider>
       <KeyboardAvoidingView
-        style={{ flex: 1, backgroundColor: "#fff" }}
+        style={[
+          { flex: 1 },
+          isDarkMode
+            ? { backgroundColor: "#000" }
+            : { backgroundColor: "#fff" },
+        ]}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={20}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <SafeAreaView style={{ flex: 1 }}>
-            <StatusBar style="dark" />
+            <StatusBar style={isDarkMode ? "light" : "dark"} />
+
             <View
               style={{
                 flexDirection: "row",
@@ -60,46 +69,65 @@ const DateOfBirth = () => {
               }}
             >
               <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="arrow-back" size={25} color="#000" />
+                <Ionicons
+                  name="arrow-back"
+                  size={25}
+                  color={isDarkMode ? "#fff" : "#000"}
+                />
               </TouchableOpacity>
             </View>
             <Text
-              style={{
-                fontSize: 28,
-                lineHeight: 32,
-                fontWeight: "600",
-                textAlign: "center",
-                marginBottom: 18,
-                marginTop: 18,
-              }}
+              style={[
+                {
+                  fontSize: 28,
+                  lineHeight: 32,
+                  fontWeight: "600",
+                  textAlign: "center",
+                  marginBottom: 18,
+                  marginTop: 18,
+                },
+                isDarkMode ? { color: "#fff" } : undefined,
+              ]}
             >
               When were you born?
             </Text>
             <View style={{ flex: 1, paddingHorizontal: 20 }}>
               <Text
-                style={{
-                  textAlign: "center",
-                  color: "#575757",
-                  fontSize: 16,
-                  fontWeight: "500",
-                  lineHeight: 24,
-                  marginBottom: 32,
-                }}
+                style={[
+                  {
+                    textAlign: "center",
+                    color: "#575757",
+                    fontSize: 16,
+                    fontWeight: "400",
+                    lineHeight: 24,
+                    marginBottom: 32,
+                  },
+                  isDarkMode ? { color: "#bfbfbf" } : undefined,
+                ]}
               >
                 Please enter your date of birth
               </Text>
               <View>
                 <TouchableOpacity
                   onPress={() => bottomSheetRef.current?.present()} // Show the modal
-                  style={{
-                    borderBottomColor: "#575757",
-                    borderBottomWidth: 1,
-                    marginBottom: 20,
-                    height: 60,
-                    justifyContent: "center",
-                  }}
+                  style={[
+                    {
+                      borderBottomWidth: 1,
+                      marginBottom: 20,
+                      height: 60,
+                      justifyContent: "center",
+                    },
+                    isDarkMode
+                      ? { borderBlockColor: "#fff" }
+                      : { borderBottomColor: "#575757" },
+                  ]}
                 >
-                  <Text style={styles.inputColor}>
+                  <Text
+                    style={[
+                      styles.inputColor,
+                      isDarkMode ? { color: "#fff" } : undefined,
+                    ]}
+                  >
                     {date ? date.toLocaleDateString("en-GB") : "DD / MM / YYYY"}
                   </Text>
                 </TouchableOpacity>
@@ -114,8 +142,29 @@ const DateOfBirth = () => {
                   backdropComponent={({ style }) => (
                     <View style={[style, styles.backdrop]} />
                   )}
+                  handleIndicatorStyle={[
+                    isDarkMode ? { backgroundColor: "#a7a7a7" } : undefined,
+                  ]}
+                  handleStyle={[
+                    isDarkMode
+                      ? {
+                          backgroundColor: "#2c2c2c",
+                          borderTopRightRadius: 15,
+                          borderTopLeftRadius: 15,
+                        }
+                      : undefined,
+                  ]}
                 >
-                  <View style={styles.modalContent}>
+                  <View
+                    style={[
+                      styles.modalContent,
+                      isDarkMode
+                        ? {
+                            backgroundColor: "#2c2c2c",
+                          }
+                        : undefined,
+                    ]}
+                  >
                     <DateTimePicker
                       testID="dateTimePicker"
                       value={date || new Date()}
@@ -136,14 +185,23 @@ const DateOfBirth = () => {
                 styles.button,
                 date ? styles.buttonActive : null,
                 { marginHorizontal: 20 },
+                isDarkMode && date ? { backgroundColor: "#fff" } : undefined,
               ]}
               disabled={!date}
             >
-              <Text style={[styles.next, date && { color: "#fff" }]}>Next</Text>
+              <Text
+                style={[
+                  styles.next,
+                  date && { color: "#fff" },
+                  date && isDarkMode ? { color: "#000" } : undefined,
+                ]}
+              >
+                Next
+              </Text>
               <Ionicons
                 name="arrow-forward-outline"
                 size={24}
-                color={date ? "#fff" : "#575757"}
+                color={date ? (isDarkMode ? "#000" : "#fff") : "#575757"}
               />
             </TouchableOpacity>
           </SafeAreaView>
