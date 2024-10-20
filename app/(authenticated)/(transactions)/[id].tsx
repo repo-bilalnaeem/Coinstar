@@ -22,6 +22,8 @@ interface renderOptions {
   description: string | undefined;
 }
 
+import { Payments, PaymentType } from "@/store/homePayments";
+
 const RenderOptions = ({ icon, label, description }: renderOptions) => {
   return (
     <TouchableOpacity
@@ -47,10 +49,11 @@ const RenderOptions = ({ icon, label, description }: renderOptions) => {
 
 const Page = () => {
   const { id } = useLocalSearchParams();
+  const payment = Payments.find((payment) => id === payment.id);
   const snapPoints = useMemo(() => ["52.5%"], []);
   const { top } = useSafeAreaInsets();
   const headerHeight = useHeaderHeight();
-  // console.log(id);
+  console.log(id);
   return (
     <View
       style={{
@@ -84,9 +87,7 @@ const Page = () => {
       >
         <View style={styles.vendor}>
           <Image
-            source={{
-              uri: "https://theconsumerverse.wordpress.com/wp-content/uploads/2019/10/mcdonalds-green.jpg?w=640",
-            }}
+            source={{ uri: payment?.logo }}
             style={{
               width: 72,
               height: 72,
@@ -95,7 +96,7 @@ const Page = () => {
             }}
           />
         </View>
-        <Text style={styles.vendorName}>McDonald's</Text>
+        <Text style={styles.vendorName}>{payment?.name}</Text>
         <View
           style={{
             borderRadius: 100,
@@ -103,11 +104,27 @@ const Page = () => {
             marginBottom: 8,
           }}
         >
-          <Text style={styles.category}>Resturant</Text>
+          <Text style={styles.category}>{payment?.category}</Text>
         </View>
-        <Text style={styles.date}>11 June 2022</Text>
-        <Text style={styles.amountPaid}>
-          -1,123<Text style={styles.cents}>.00</Text>
+        <Text style={styles.date}>{payment?.date.toDateString()}</Text>
+        <Text
+          style={[
+            styles.amountPaid,
+            // payment?.payment === PaymentType.DEBIT
+            //   ? {
+            //       color: "#000",
+            //     }
+            //   : {
+            //       color: "#4AA879",
+            //     },
+          ]}
+        >
+          {payment?.payment === PaymentType.DEBIT ? "-" : "+"}
+          {Math.floor(payment?.amount)}
+          <Text style={styles.cents}>
+            {/* .{String(payment?.amount).split('.')[1] || '00'} */}.
+            {(payment?.amount % 1).toFixed(2).substring(2)}
+          </Text>
         </Text>
       </View>
 
