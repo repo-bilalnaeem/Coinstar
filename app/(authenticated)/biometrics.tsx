@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   useWindowDimensions,
   Pressable,
+  useColorScheme,
 } from "react-native";
 import React from "react";
 
@@ -19,15 +20,23 @@ const enable = () => {
     router.navigate("/(authenticated)/(card)");
   };
 
+  const isDarkMode = useColorScheme() === "dark";
+
   return (
     <SafeAreaView
-      style={{
-        backgroundColor: "#fff",
-        flex: 1,
-        padding: 20,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      style={[
+        {
+          flex: 1,
+          padding: 20,
+          justifyContent: "center",
+          alignItems: "center",
+        },
+        isDarkMode
+          ? { backgroundColor: "#000" }
+          : {
+              backgroundColor: "#fff",
+            },
+      ]}
     >
       <Image
         source={require("@/assets/images/yellow-curl.png")}

@@ -12,7 +12,7 @@ import {
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import PieChart from "@/components/PieChart";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useHeaderHeight } from "@react-navigation/elements";
+// import { useHeaderHeight } from "@react-navigation/native";
 import StatsCategories from "@/components/StatsCategories";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { calculatePieChartData, PieChartDataItem } from "@/store/homePayments";
@@ -26,7 +26,7 @@ const RIGHT_POSITION = 70;
 
 const Statistics = () => {
   const { top } = useSafeAreaInsets();
-  const headerHeight = useHeaderHeight();
+  const headerHeight = 50;
   const isDarkMode = useColorScheme() === "dark";
   const slideAnim = useRef(new Animated.Value(0)).current;
   const [isGraph, setIsGraph] = useState(true);

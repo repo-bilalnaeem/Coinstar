@@ -7,7 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { useHeaderHeight } from "@react-navigation/elements";
+// import { useHeaderHeight } from "@react-navigation/elements";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { useMemo } from "react";
 import BarGraph from "@/components/PaymentBarGraph";
@@ -52,7 +52,7 @@ const Page = () => {
   const payment = Payments.find((payment) => id === payment.id);
   const snapPoints = useMemo(() => ["52.5%"], []);
   const { top } = useSafeAreaInsets();
-  const headerHeight = useHeaderHeight();
+  const headerHeight = 50;
   console.log(id);
   return (
     <View

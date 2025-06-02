@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  useColorScheme,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
@@ -19,11 +20,13 @@ import {
 } from "react-native-reanimated";
 import Animated from "react-native-reanimated";
 import * as LocalAuthentication from "expo-local-authentication";
+import { color } from "d3";
 
 const Passcode = () => {
   const [code, setCode] = useState<number[]>([]);
   const codeLength = Array(4).fill(0);
   const router = useRouter();
+  const isDarkMode = useColorScheme() === "dark";
 
   const offset = useSharedValue(0);
   const style = useAnimatedStyle(() => {
@@ -98,7 +101,12 @@ const Passcode = () => {
   };
 
   return (
-    <SafeAreaView style={{ backgroundColor: "#fff", flex: 1, padding: 20 }}>
+    <SafeAreaView
+      style={[
+        { flex: 1, padding: 20 },
+        isDarkMode ? { backgroundColor: "#000" } : { backgroundColor: "#fff" },
+      ]}
+    >
       <Image
         source={require("@/assets/images/yellow-curl.png")}
         style={{
@@ -120,7 +128,11 @@ const Passcode = () => {
           alignSelf: "center",
         }}
       />
-      <Text style={styles.heading}>Create Passcode</Text>
+      <Text
+        style={[styles.heading, isDarkMode ? { color: "#fff" } : undefined]}
+      >
+        Create Passcode
+      </Text>
       <Animated.View style={[styles.codeView, style]}>
         {codeLength.map((_, index) => (
           <View
@@ -136,6 +148,9 @@ const Passcode = () => {
               {
                 backgroundColor: code[index] ? "#000" : "transparent",
               },
+              isDarkMode
+                ? { backgroundColor: code[index] ? "#Fff" : "grey" }
+                : undefined,
             ]}
           ></View>
         ))}
@@ -149,16 +164,28 @@ const Passcode = () => {
             <TouchableOpacity
               key={number}
               onPress={() => onNumberPress(number)}
-              style={{
-                backgroundColor: "#f2f2f2",
-                width: 72,
-                height: 72,
-                borderRadius: 500,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              style={[
+                {
+                  backgroundColor: "#f2f2f2",
+                  width: 72,
+                  height: 72,
+                  borderRadius: 500,
+                  justifyContent: "center",
+                  alignItems: "center",
+                },
+                isDarkMode
+                  ? { backgroundColor: "rgba(64, 64, 64, 1)" }
+                  : undefined,
+              ]}
             >
-              <Text style={styles.text}>{number}</Text>
+              <Text
+                style={[
+                  styles.text,
+                  isDarkMode ? { color: "#fff" } : undefined,
+                ]}
+              >
+                {number}
+              </Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -167,16 +194,28 @@ const Passcode = () => {
             <TouchableOpacity
               key={number}
               onPress={() => onNumberPress(number)}
-              style={{
-                backgroundColor: "#f2f2f2",
-                width: 72,
-                height: 72,
-                borderRadius: 500,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              style={[
+                {
+                  backgroundColor: "#f2f2f2",
+                  width: 72,
+                  height: 72,
+                  borderRadius: 500,
+                  justifyContent: "center",
+                  alignItems: "center",
+                },
+                isDarkMode
+                  ? { backgroundColor: "rgba(64, 64, 64, 1)" }
+                  : undefined,
+              ]}
             >
-              <Text style={styles.text}>{number}</Text>
+              <Text
+                style={[
+                  styles.text,
+                  isDarkMode ? { color: "#fff" } : undefined,
+                ]}
+              >
+                {number}
+              </Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -185,16 +224,28 @@ const Passcode = () => {
             <TouchableOpacity
               key={number}
               onPress={() => onNumberPress(number)}
-              style={{
-                backgroundColor: "#f2f2f2",
-                width: 72,
-                height: 72,
-                borderRadius: 500,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              style={[
+                {
+                  backgroundColor: "#f2f2f2",
+                  width: 72,
+                  height: 72,
+                  borderRadius: 500,
+                  justifyContent: "center",
+                  alignItems: "center",
+                },
+                isDarkMode
+                  ? { backgroundColor: "rgba(64, 64, 64, 1)" }
+                  : undefined,
+              ]}
             >
-              <Text style={styles.text}>{number}</Text>
+              <Text
+                style={[
+                  styles.text,
+                  isDarkMode ? { color: "#fff" } : undefined,
+                ]}
+              >
+                {number}
+              </Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -218,17 +269,30 @@ const Passcode = () => {
           </View>
           <View>
             <TouchableOpacity
+              key={0}
               onPress={() => onNumberPress(0)}
-              style={{
-                backgroundColor: "#f2f2f2",
-                width: 72,
-                height: 72,
-                borderRadius: 500,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              style={[
+                {
+                  backgroundColor: "#f2f2f2",
+                  width: 72,
+                  height: 72,
+                  borderRadius: 500,
+                  justifyContent: "center",
+                  alignItems: "center",
+                },
+                isDarkMode
+                  ? { backgroundColor: "rgba(64, 64, 64, 1)" }
+                  : undefined,
+              ]}
             >
-              <Text style={styles.text}>0</Text>
+              <Text
+                style={[
+                  styles.text,
+                  isDarkMode ? { color: "#fff" } : undefined,
+                ]}
+              >
+                0
+              </Text>
             </TouchableOpacity>
           </View>
           <View
